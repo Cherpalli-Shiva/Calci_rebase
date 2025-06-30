@@ -1,0 +1,38 @@
+#/!bin/bash
+
+##########################
+#
+#Author: Shiva kumar cherpalli
+#Date: 04/28/2025
+#
+#This script will: Backup your folder you choose (ex: /etc)
+#Save the backup to a different directory
+#Add a timestamp to the backup filename
+#Compress it using tar and gzip
+#
+#########################
+
+#Source directory (folder you want to back up)
+SOURCE_DIR="/drives/c/Users/cheri/OneDrive/Desktop/certificates/shiva"
+
+#Destination directory(Where to save the backup)
+DEST_DIR="/drives/c/cert"
+
+#Create destination directory if it doesn't exist
+mkdir -p "$DEST_DIR"
+
+#Create timestamp
+TIMESTAMP=$(date +"%y%m%d_%H%M%S")
+
+#Backup filename
+BACKUP_FILE="backup_$TIMESTAMP.tar.gz"
+
+#perform backup
+echo "backing up $SOURCE_DIR to $DEST_DIR/$BACKUP_FILE"
+
+tar -czf "$DEST_DIR/$BACKUP_FILE" "$SOURCE_DIR"
+
+#Backup completed
+echo "Backup completed succcessfully"
+
+
