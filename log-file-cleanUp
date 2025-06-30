@@ -1,0 +1,21 @@
+#!/bin/bash
+
+#######################
+
+# Author: Shiva kumar 
+# Date: 05/02/2025
+#
+# Description: Deletes .log files older than 7 days from /var/log/
+# Run as root or with sudo
+
+########################
+
+LOG_DIR="/var/log"
+DAYS_OLD=7
+
+echo "Searching for .log files older than $DAYS_OLD days in $LOG_DIR..."
+
+find "$LOG_DIR" -type f -name "*.log" -mtime +$DAYS_OLD -exec rm -f {} \;
+
+echo "Cleanup complete"
+
