@@ -1,0 +1,22 @@
+#!/bin/bash
+########################
+#Author: Shiva kumar cherpalli
+#Date: 04/27/2025
+#
+#This Script checks disk space usage 
+#and sends a warning if usage is above 60%
+#########################
+
+#Threshold (set 60%)
+THRESHOLD=60
+
+#Get disk usage of root ('/)
+USAGE=$(df / | grep / | awk '{print $5}' | sed 's/%//g')
+echo "Disk usage is at ${USAGE}%"
+
+if [ "$USAGE" -gt "$THRESHOLD" ]; then
+    echo "Warning: Disk usage is above ${THRESHOLD}%!"
+
+   #Send email alert
+   echo "Disk space is critically high on server $(hostname)" | mail -s "Disk Space Alert" cherpallishiva123@gmail.com
+fi
